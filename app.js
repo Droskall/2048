@@ -184,3 +184,211 @@ function addCase(x, y, a, b) {
         }
     }
 }
+
+/**
+ * Function for move cases up and down
+ * @param x
+ * @param y
+ * @param a
+ * @param b
+ * @param c
+ * @param number
+ * @param empty
+ */
+function moveCaseX(x, y, a, b, c, number, empty) {
+    if((arrayLine[x][y].childElementCount === 0) && (arrayLine[x + a][y].childElementCount > 0)) {
+        if(x === number) {
+            empty(x, y, x);
+            notOK++;
+        }
+
+        else if((arrayLine[x + b][y].childElementCount === 0) && (arrayLine[x + a][y].childElementCount > 0)) {
+            if((x + b) === number) {
+                let newX = x + b;
+                empty(x, y, newX);
+                notOK++;
+            }
+
+            else if((arrayLine[x + c][y].childElementCount === 0) && (arrayLine[x + a][y].childElementCount > 0)) {
+                let newX = x + c;
+                empty(x, y, newX);
+                notOK++;
+            }
+
+            else {
+                let newX = x + b;
+                empty(x, y, newX);
+                notOK++;
+            }
+        }
+
+        else {
+            empty(x, y, x);
+            notOK++;
+        }
+    }
+}
+
+/**
+ * Function for move cases right and left
+ * @param x
+ * @param y
+ * @param a
+ * @param b
+ * @param c
+ * @param number
+ * @param empty
+ */
+function moveCaseY(x, y, a, b, c, number, empty) {
+    if((arrayLine[x][y].childElementCount === 0) && (arrayLine[x][y + a].childElementCount > 0)) {
+        if(y === number) {
+            empty(x, y, y);
+            notOK++;
+        }
+        else if((arrayLine[x][y + b].childElementCount === 0)&& (arrayLine[x][y + a].childElementCount > 0)) {
+            if((y + b) === number) {
+                let newY = y + b;
+                empty(x, y, newY);
+                notOK++;
+            }
+            else if((arrayLine[x][y + c].childElementCount === 0)&& (arrayLine[x][y + a].childElementCount > 0)) {
+                let newY = y + c;
+                empty(x, y, newY);
+                notOK++;
+            }
+            else {
+                let newY = y + b;
+                empty(x, y, newY);
+                notOK++;
+            }
+        }
+        else {
+            empty(x, y, y);
+            notOK++;
+        }
+    }
+}
+
+/**
+ * Function for check the different cases for move up
+ */
+function checkUp() {
+    for(let x = 0; x < 3; x++) {
+        for(let y = 0; y < 4; y++) {
+            moveCaseX(x, y, 1, -1, -2, 0, emptyUp);
+        }
+    }
+
+    for(let x = 0; x < 3; x++) {
+        for(let y = 0; y < 4; y++) {
+            addCase(x, y, (x + 1), y);
+        }
+    }
+
+    for(let x = 0; x < 3; x++) {
+        for(let y = 0; y < 4; y++) {
+            moveCaseX(x, y, 1, -1, -2, 0, emptyUp);
+        }
+    }
+
+    if(notOK > 0) {
+        newNumber();
+    }
+
+    else if(notOK === 0){
+        return 0
+    }
+}
+
+/**
+ * Function for check the different cases for move down
+ */
+function checkDown() {
+    for(let x = 3; x > 0; x--) {
+        for(let y = 0; y < 4; y++) {
+            moveCaseX(x, y, -1, +1, +2, 3,emptyDown);
+        }
+    }
+
+    for(let x = 3; x > 0; x--) {
+        for(let y = 0; y < 4; y++) {
+            addCase(x, y, (x - 1), y)
+        }
+    }
+
+    for(let x = 3; x > 0; x--) {
+        for(let y = 0; y < 4; y++) {
+            moveCaseX(x, y, -1, +1, +2, 3, emptyDown);
+        }
+    }
+
+    if(notOK > 0) {
+        newNumber();
+    }
+
+    else if(notOK === 0){
+        return 0
+    }
+}
+
+/**
+ * Function for check the different cases for move left
+ */
+function checkLeft() {
+    for(let x = 0; x < 4; x++) {
+        for(let y = 0; y < 3; y++) {
+            moveCaseY(x, y, 1, -1, -2, 0, emptyLeft);
+        }
+    }
+
+    for(let x = 0; x < 4; x++) {
+        for(let y = 0; y < 3; y++) {
+            addCase(x, y, x, (y + 1));
+        }
+    }
+
+    for(let x = 0; x < 4; x++) {
+        for(let y = 0; y < 3; y++) {
+            moveCaseY(x, y, 1, -1, -2, 0, emptyLeft);
+        }
+    }
+
+    if(notOK > 0) {
+        newNumber();
+    }
+
+    else if(notOK === 0){
+        return 0
+    }
+}
+
+/**
+ * Function for check the different cases for move right
+ */
+function checkRight() {
+    for(let x = 0; x < 4; x++) {
+        for(let y = 3; y > 0; y--) {
+            moveCaseY(x, y, -1, +1, +2, 3, emptyRight);
+        }
+    }
+
+    for(let x = 0; x < 4; x++) {
+        for(let y = 3; y > 0; y--) {
+            addCase(x, y, x, (y - 1));
+        }
+    }
+
+    for(let x = 0; x < 4; x++) {
+        for(let y = 3; y > 0; y--) {
+            moveCaseY(x, y, -1, +1, +2, 3, emptyRight);
+        }
+    }
+
+    if(notOK > 0) {
+        newNumber();
+    }
+
+    else if(notOK === 0){
+        return 0
+    }
+}
