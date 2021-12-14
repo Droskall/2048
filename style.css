@@ -1,0 +1,98 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    width: 100%;
+    background: rgb(216, 216, 238);
+    background-size: 100vw 100vh;
+    font-size: 2rem;
+}
+
+#container {
+    width: 800px;
+    border: 2px solid black;
+    border-radius: 10px;
+    margin: 3% auto 3% auto;
+    background: rgb(209, 210, 219);
+}
+
+h1, #rules, #score, #scoreTexte {
+    width: 100%;
+    text-align: center;
+    font-style: italic;
+    margin-top: 2%;
+}
+
+h1 {
+    text-decoration-line: underline;
+}
+
+#game {
+    width: 420px;
+    height: 420px;
+    border-radius: 10px;
+    background-color: #00000b;
+    margin: 3% auto 0 auto;
+}
+
+#line1, #line2, #line3, #line4 {
+    width: 100%;
+    height: 25%;
+    display: flex;
+    justify-content: space-evenly;
+
+}
+
+.case {
+    background-color: #ffffff;
+    width: 21%;
+    height: 90%;
+    align-self: center;
+    border-radius: 10px;
+    display: flex;
+}
+
+#newGame {
+    margin: 2% 45% 2%;
+    border-radius: 20px;
+    padding: 1%;
+    font-weight: bold;
+}
+
+.number, #result {
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    font-size: 3.5rem;
+}
+
+#result {
+    background-color: darkgrey;
+    display: none;
+    text-align: center;
+}
+
+@media screen and (max-width: 850px){
+    #container {
+        width: 100%;
+        margin: 0;
+        overflow: hidden;
+    }
+}
+
+@media screen and (max-width: 450px){
+    #game {
+        width: 100%;
+    }
+}

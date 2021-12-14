@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2048</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="container">
+    <h1>2048</h1>
+    <p id="rules">Vous devez réaliser un total de 2048 dans une case.<br> Touches: Z Q S D.</p>
+
+    <div id="game">
+        <div class="line" id="line1">
+            <div class="case" id="case1"></div>
+            <div class="case" id="case2"></div>
+            <div class="case" id="case3"></div>
+            <div class="case" id="case4"></div>
+        </div>
+
+        <div class="line" id="line2">
+            <div class="case" id="case5"></div>
+            <div class="case" id="case6"></div>
+            <div class="case" id="case7"></div>
+            <div class="case" id="case8"></div>
+        </div>
+
+        <div class="line" id="line3">
+            <div class="case" id="case9"></div>
+            <div class="case" id="case10"></div>
+            <div class="case" id="case11"></div>
+            <div class="case" id="case12"></div>
+        </div>
+
+        <div class="line" id="line4">
+            <div class="case" id="case13"></div>
+            <div class="case" id="case14"></div>
+            <div class="case" id="case15"></div>
+            <div class="case" id="case16"></div>
+        </div>
+        <div id="result"></div>
+    </div>
+
+    <p id="scoreTexte">Votre score actuel: </p>
+    <p id="score">0</p>
+
+    <button id="newGame">Nouvelle partie</button>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
