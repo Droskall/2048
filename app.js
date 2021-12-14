@@ -79,7 +79,7 @@ function newNumber() {
 
 // Button for begin a game
 newGame.addEventListener("click", function () {
-    resetLoose();
+resetLoose();
 
     for(let x = 1; x <= 16; x++) {
         let caseTest = "case" + x
@@ -391,4 +391,167 @@ function checkRight() {
     else if(notOK === 0){
         return 0
     }
+}
+
+/**
+ * Function for creat and delete the transfers cases for move up
+ * @param x
+ * @param y
+ * @param newX
+ */
+function emptyUp(x, y, newX) {
+    let div = creat(arrayLine[newX][y].id);
+    div.innerHTML = arrayLine[x + 1][y].lastElementChild.innerHTML;
+    arrayLine[x + 1][y].removeChild(arrayLine[x + 1][y].lastElementChild);
+    arrayLine[x + 1][y].classList.remove("notEmpty");
+    color(div);
+}
+
+/**
+ * Function for creat and delete the transfers cases for move down
+ * @param x
+ * @param y
+ * @param newX
+ */
+function emptyDown(x, y, newX) {
+    let div = creat(arrayLine[newX][y].id);
+    div.innerHTML = arrayLine[x - 1][y].lastElementChild.innerHTML;
+    arrayLine[x - 1][y].removeChild(arrayLine[x - 1][y].lastElementChild);
+    arrayLine[x - 1][y].classList.remove("notEmpty");
+    color(div);
+}
+
+/**
+ * Function for creat and delete the transfers cases for move down
+ * @param x
+ * @param y
+ * @param newY
+ */
+function emptyLeft(x, y, newY) {
+    let div = creat(arrayLine[x][newY].id);
+    div.innerHTML = arrayLine[x][y + 1].lastElementChild.innerHTML;
+    arrayLine[x][y + 1].removeChild(arrayLine[x][y + 1].lastElementChild);
+    arrayLine[x][y + 1].classList.remove("notEmpty");
+    color(div);
+}
+
+/**
+ * Function for creat and delete the transfers cases for move right
+ * @param x
+ * @param y
+ * @param newY
+ */
+function emptyRight(x, y, newY) {
+    let div = creat(arrayLine[x][newY].id);
+    div.innerHTML = arrayLine[x][y - 1].lastElementChild.innerHTML;
+    arrayLine[x][y - 1].removeChild(arrayLine[x][y - 1].lastElementChild);
+    arrayLine[x][y - 1].classList.remove("notEmpty");
+    color(div);
+}
+
+/**
+ * Function for choice the color compared the number
+ * @param div
+ * @returns {string}
+ */
+function color(div) {
+    switch (div.innerHTML) {
+        case "2":
+            div.style.backgroundColor = "#d6c0b2";
+            break;
+
+        case "4":
+            div.style.backgroundColor = "#e3b573";
+            break;
+
+        case "8":
+            div.style.backgroundColor = "#d2971a";
+            break;
+
+        case "16":
+            div.style.backgroundColor = "#e3d22d";
+            break;
+
+        case "32":
+            div.style.backgroundColor = "#f5715f";
+            break;
+
+        case "64":
+            div.style.backgroundColor = "#ffc8a5";
+            div.style.color = "#831414";
+            break;
+
+        case "128":
+            div.style.backgroundColor = "#ffc663";
+            div.style.color = "#831414";
+            break;
+
+        case "256":
+            div.style.backgroundColor = "#f1a708";
+            div.style.color = "#831414";
+            break;
+
+        case "512":
+            div.style.backgroundColor = "#f8e50f";
+            div.style.color = "#831414";
+            break;
+
+        case "1024":
+            div.style.backgroundColor = "#ff5643";
+            div.style.color = "#831414";
+            break;
+
+        case "2048":
+            div.style.backgroundColor = "#ff9443";
+            div.style.color = "#833b14";
+            break;
+    }
+}
+
+/**
+ * Function for check endgame condition
+ */
+function loose() {
+    let win = 0;
+
+    if((looseUp === 1) && (looseDown === 1) && (looseLeft === 1) && (looseRight === 1)) {
+        for(let x = 0; x < 4; x++) {
+            for(let y = 0; y < 4; y++) {
+                if(parseFloat(arrayLine[x][y].lastElementChild.innerHTML) >= 2048) {
+                    win++
+                    document.body.removeEventListener("keypress", move);
+                    setTimeout( () => {
+                        for(let x = 0; x < arrayLine.length; x++) {
+                            document.getElementsByClassName("line")[x].style.display = "none";
+                        }
+
+                        result.innerHTML = "Bravo, vous avez réussi!!!";
+                        result.style.display = "flex";
+                    }, 2000);
+                }
+            }
+        }
+
+        if(win === 0) {
+            setTimeout( () => {
+                for(let x = 0; x < arrayLine.length; x++) {
+                    document.getElementsByClassName("line")[x].style.display = "none";
+                }
+
+                result.innerHTML = "Dommage, vous avez perdu!!!";
+                result.style.display = "flex";
+            }, 2000);
+        }
+    }
+}
+
+
+/**
+ * Function for reset looses points
+ */
+function resetLoose() {
+    looseUp = 0;
+    looseDown = 0;
+    looseRight = 0;
+    looseLeft = 0;
 }
